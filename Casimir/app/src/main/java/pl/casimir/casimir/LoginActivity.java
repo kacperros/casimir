@@ -6,14 +6,21 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+
+
+    @BindView(R.id.login_text) EditText login_editText;
+    @BindView(R.id.password_text) EditText password_editText;
+    @BindView(R.id.login_button) Button logIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +30,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         initOnClickListener();
     }
 
-    @BindView(R.id.login_text) EditText login_editText;
-    @BindView(R.id.password_text) EditText password_editText;
     private void initOnClickListener() {
-        findViewById(R.id.login_button).setOnClickListener(this);
+        logIn.setOnClickListener(this);
     }
 
     @Override
