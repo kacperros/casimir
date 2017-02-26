@@ -14,20 +14,27 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pl.casimir.casimir.login.LoginPresenter;
+import pl.casimir.casimir.login.LoginView;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginView{
 
 
     @BindView(R.id.login_text) EditText login_editText;
     @BindView(R.id.password_text) EditText password_editText;
     @BindView(R.id.login_button) Button logIn;
 
+
+    LoginPresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        presenter = new LoginPresenter(this);
         initOnClickListener();
+
+
     }
 
     private void initOnClickListener() {
@@ -39,11 +46,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         int click_id = v.getId();
         String login = login_editText.getText().toString();
         String password = password_editText.getText().toString();
+
         if(click_id == R.id.login_button){
-            if(login.equals("hehe") && password.equals("misiek123"))
-                Toast.makeText(this, "Yo, what's up??!", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(this, "Coś nie pykło", Toast.LENGTH_SHORT).show();
+            presenter.verifyLogin(login, password);
         }
+    }
+
+    @Override
+    public void toNextActivity() {
+        Toast.makeText(this, "Yo, what's up??!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void badLogin() {
+        Toast.makeText(this, "Coś nie pykło", Toast.LENGTH_SHORT).show();
     }
 }
