@@ -7,15 +7,15 @@ package pl.casimir.casimir.login;
 public class LoginPresenter {
 
     private LoginView view;
-    private LoginInteractor interactor;
+    private LoginModel model;
 
     public LoginPresenter(LoginView view){
         this.view = view;
-
+        this.model = new LoginModel();
     }
 
     public void verifyLogin (String login, String password){
-        boolean isValid = interactor.verify(login, password);
+        boolean isValid = model.verify(login, password);
         if(isValid)
             view.toNextActivity();
         else

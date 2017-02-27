@@ -1,5 +1,7 @@
 package pl.casimir.casimir;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,8 +26,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.password_text) EditText password_editText;
     @BindView(R.id.login_button) Button logIn;
 
-
     LoginPresenter presenter;
+    private SharedPreferences sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ButterKnife.bind(this);
         presenter = new LoginPresenter(this);
         initOnClickListener();
-
+        //sharedPref = getPreferences(Context.MODE_PRIVATE);
 
     }
 
