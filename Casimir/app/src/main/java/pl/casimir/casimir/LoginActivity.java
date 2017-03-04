@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.password_text) EditText password_editText;
     @BindView(R.id.login_button) Button logIn;
 
-    LoginPresenter presenter;
+    private LoginPresenter presenter;
     private SharedPreferences sharedPref;
 
     @Override
@@ -34,10 +34,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        presenter = new LoginPresenter(this);
-        initOnClickListener();
-        //sharedPref = getPreferences(Context.MODE_PRIVATE);
 
+        sharedPref = getPreferences(Context.MODE_PRIVATE);
+        setLogin();
+
+        //presenter = new LoginPresenter(this);
+        initOnClickListener();
     }
 
     private void initOnClickListener() {
@@ -47,12 +49,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         int click_id = v.getId();
+
+        String correct_login = sharedPref.getString("login", null);
+        String correct_password = sharedPref.getString("password", null);
         String login = login_editText.getText().toString();
         String password = password_editText.getText().toString();
-
         if(click_id == R.id.login_button){
-            presenter.verifyLogin(login, password);
+            //presenter.verifyLogin(login, password);
+            if(login.equals(correct_login) && password.equals(correct_password))
+                Toast.makeText(this, "Yo, what's up?!", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, "nope, nope, nope!!11", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void setLogin()
+    {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("login", "misiek123");
+        editor.putString("password", "password");
+        editor.commit();
     }
 
     @Override
