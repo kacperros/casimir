@@ -24,7 +24,7 @@ public class SharedPreferencesFacadeImpl implements SharedPreferencesFacade {
 
     @Override
     public String getString(String key) {
-        return preferences.getString(key, EMPTY);
+        return preferences.getString(key, null);
     }
 
     @Override

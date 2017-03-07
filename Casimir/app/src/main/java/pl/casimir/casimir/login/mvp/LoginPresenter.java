@@ -9,14 +9,13 @@ public class LoginPresenter {
     private LoginView view;
     private LoginModel model;
 
-    public LoginPresenter(LoginView view){
+    public LoginPresenter(LoginView view, LoginModel loginModel){
         this.view = view;
-        this.model = new LoginModel();
+        this.model = loginModel;
     }
 
-    public void verifyLogin (String login, String password){
-        boolean isValid = model.verify(login, password);
-        if(isValid)
+    public void login (String login, String password){
+        if(model.login(login, password))
             view.toNextActivity();
         else
             view.badLogin();

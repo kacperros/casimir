@@ -1,7 +1,5 @@
 package pl.casimir.casimir.login.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,65 +7,35 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import pl.casimir.casimir.CasimirApplication;
 import pl.casimir.casimir.R;
 import pl.casimir.casimir.login.mvp.LoginPresenter;
 import pl.casimir.casimir.login.mvp.LoginView;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginView{
+public class LoginActivity extends AppCompatActivity implements LoginView {
 
 
-    @BindView(R.id.login_text) EditText login_editText;
-    @BindView(R.id.password_text) EditText password_editText;
-    @BindView(R.id.login_button) Button logIn;
+    @BindView(R.id.login_text)
+    EditText loginEditText;
+    @BindView(R.id.password_text)
+    EditText passwordEditText;
+    @BindView(R.id.login_button)
+    Button logInButton;
 
-    private LoginPresenter presenter;
-    private SharedPreferences sharedPref;
-
-    private static final String LOGIN = "login";
-    private static final String PASSWORD = "password";
+    @Inject
+    LoginPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
-        sharedPref = getPreferences(Context.MODE_PRIVATE);
-        setLogin();
-
-        //presenter = new LoginPresenter(this);
-        initOnClickListener();
-    }
-
-    private void initOnClickListener() {
-        logIn.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        int click_id = v.getId();
-
-        String correct_login = sharedPref.getString("login", null);
-        String correct_password = sharedPref.getString("password", null);
-        String login = login_editText.getText().toString();
-        String password = password_editText.getText().toString();
-        if(click_id == R.id.login_button){
-            //presenter.verifyLogin(login, password);
-            if(login.equals(correct_login) && password.equals(correct_password))
-                Toast.makeText(this, "Yo, what's up?!", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(this, "nope, nope, nope!!11", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void setLogin()
-    {
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("login", "misiek123");
-        editor.putString("password", "password");
-        editor.commit();
+        ((CasimirApplication)getApplication()).getInjector().inject(this);
+        logInButton.setOnClickListener(v -> presenter.login(loginEditText.getText().toString(), passwordEditText.getText().toString()));
     }
 
     @Override

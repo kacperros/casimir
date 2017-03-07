@@ -1,26 +1,32 @@
 package pl.casimir.casimir.login.mvp;
 
 
-import android.content.SharedPreferences;
+import javax.inject.Inject;
+
+import pl.casimir.casimir.dagger.ActivityScope;
+import pl.casimir.casimir.persistance.shared_prefs.SharedPreferencesFacade;
 
 /**
  * Created by hp on 2017-02-26.
  */
-
+@ActivityScope
 public class LoginModel {
 
-    private SharedPreferences sharedPrefs;
+    private SharedPreferencesFacade sharedPreferencesFacade;
+    private String login;
+    private String password;
 
-    private String login, password;
+    private static final String LOGIN = "LOGIN";
+    private static final String PASSWORD = "PASSWORD";
 
-    public LoginModel(){
-        this.login = sharedPrefs.getString("login", "lol");
-        this.password = sharedPrefs.getString("password", "lol");
+    @Inject
+    public LoginModel(SharedPreferencesFacade facade) {
+        this.sharedPreferencesFacade = facade;
+        this.login = sharedPreferencesFacade.getString(LOGIN);
+        this.password = sharedPreferencesFacade.getString(PASSWORD);
     }
-    boolean verify(String login, String password){
 
-        if(login.equals(this.login) && password.equals(this.password))
-            return true;
-        return false;
+    boolean login(String login, String password) {
+        return login.equals(this.login) && password.equals(this.password);
     }
 }
