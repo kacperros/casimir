@@ -7,6 +7,7 @@ import pl.casimir.casimir.CasimirApplication;
 import pl.casimir.casimir.login.dagger.DaggerLoginComponent;
 import pl.casimir.casimir.login.dagger.LoginModule;
 import pl.casimir.casimir.login.ui.LoginActivity;
+import pl.casimir.casimir.register.register.ui.RegisterActivity;
 
 public class DependencyInjector {
 
@@ -17,6 +18,8 @@ public class DependencyInjector {
                 .build()
                 .inject(loginActivity);
     }
+
+
 
     private CasimirComponent getCasimirComponent(Activity activity) {
         return ((CasimirApplication)activity.getApplication()).getComponent();

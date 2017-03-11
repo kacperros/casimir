@@ -1,5 +1,6 @@
 package pl.casimir.casimir.login.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,6 +16,7 @@ import pl.casimir.casimir.CasimirApplication;
 import pl.casimir.casimir.R;
 import pl.casimir.casimir.login.mvp.LoginPresenter;
 import pl.casimir.casimir.login.mvp.LoginView;
+import pl.casimir.casimir.register.register.ui.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
@@ -25,6 +27,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     EditText passwordEditText;
     @BindView(R.id.login_button)
     Button logInButton;
+    @BindView(R.id.register_button)
+    Button registerButton;
 
     @Inject
     LoginPresenter presenter;
@@ -36,6 +40,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         ButterKnife.bind(this);
         ((CasimirApplication)getApplication()).getInjector().inject(this);
         logInButton.setOnClickListener(v -> presenter.login(loginEditText.getText().toString(), passwordEditText.getText().toString()));
+        registerButton.setOnClickListener(v -> startRegisterActivity());
+    }
+
+    private void startRegisterActivity() {
+        Intent intent = new Intent (this, RegisterActivity.class);
+        startActivity(intent);
     }
 
     @Override

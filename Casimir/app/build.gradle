@@ -73,8 +73,6 @@ dependencies {
     provided "javax.annotation:jsr250-api:$jsr_annotation_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 
-
-
 //TEST
     testCompile "junit:junit:$junit_version"
     testCompile "org.mockito:mockito-core:$mockito_version"
@@ -95,4 +93,5 @@ dependencies {
     androidTestCompile "com.google.dexmaker:dexmaker:$dexmarker_version"
     androidTestCompile "com.google.dexmaker:dexmaker-mockito:$dexmarker_version"
     androidTestApt "com.google.dagger:dagger-compiler:$daggerVersion"
+    compile 'com.android.support.constraint:constraint-layout:+'
 }
