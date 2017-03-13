@@ -5,6 +5,6 @@ package pl.casimir.casimir.register.register.mvp;
  */
 
 public interface RegisterModel {
-    public boolean isCorrect();
-    public void saveData();
+    public boolean isCorrect(String login, String password1, String password2);
+    public void saveData(String login, String password);
 }

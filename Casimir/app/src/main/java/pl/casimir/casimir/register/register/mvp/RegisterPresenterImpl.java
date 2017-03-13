@@ -18,7 +18,8 @@ public class RegisterPresenterImpl implements RegisterPresenter {
 
     @Override
     public void register(String username, String password1, String password2) {
-        if(model.isCorrect()) {
+        if(model.isCorrect(username, password1, password2)) {
+            model.saveData(username, password1);
             view.signUp();
         }
         else
