@@ -2,12 +2,13 @@ package pl.casimir.casimir.register.register.mvp;
 
 import javax.inject.Inject;
 
+import pl.casimir.casimir.dagger.ActivityScope;
 import pl.casimir.casimir.persistance.shared_prefs.SharedPreferencesFacade;
 
 /**
  * Created by hp on 2017-03-11.
  */
-
+@ActivityScope
 public class RegisterModelImpl implements RegisterModel {
 
     private SharedPreferencesFacade facade;

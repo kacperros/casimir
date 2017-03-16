@@ -4,6 +4,7 @@ import dagger.Module;
 import dagger.Provides;
 import pl.casimir.casimir.dagger.ActivityScope;
 import pl.casimir.casimir.register.register.mvp.RegisterModel;
+import pl.casimir.casimir.register.register.mvp.RegisterModelImpl;
 import pl.casimir.casimir.register.register.mvp.RegisterPresenter;
 import pl.casimir.casimir.register.register.mvp.RegisterPresenterImpl;
 import pl.casimir.casimir.register.register.mvp.RegisterView;
@@ -22,7 +23,7 @@ public class RegisterModule {
 
     @Provides
     @ActivityScope
-    public RegisterPresenterImpl registerPresenterProvider(RegisterModel model){
+    public RegisterPresenterImpl registerPresenterProvider(RegisterModelImpl model){
         return new RegisterPresenterImpl(view, model);
     }
 
