@@ -31,8 +31,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     @BindView(R.id.confirmPassword_editText)
     EditText confirmPassword;
 
-    @Inject
-    RegisterPresenterImpl presenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +41,9 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
 
         ((CasimirApplication)getApplication()).getInjector().inject(this);
 
-        registerButton.setOnClickListener(v -> presenter.register(username.getText().toString()
-                , setPassword.getText().toString()
-                , confirmPassword.getText().toString()));
+        //registerButton.setOnClickListener(v -> presenter.register(username.getText().toString()
+          //      , setPassword.getText().toString()
+            //    , confirmPassword.getText().toString()));
     }
 
 

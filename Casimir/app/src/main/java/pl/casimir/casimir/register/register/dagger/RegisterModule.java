@@ -20,8 +20,9 @@ public class RegisterModule {
         this.view = view;
     }
 
-    @Provides
+
     @ActivityScope
+    @Provides
     public RegisterPresenterImpl registerPresenterProvider(RegisterModel model){
         return new RegisterPresenterImpl(view, model);
     }
