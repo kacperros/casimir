@@ -1,5 +1,6 @@
 package pl.casimir.casimir.register.register.ui;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,7 +23,7 @@ import pl.casimir.casimir.register.register.mvp.RegisterView;
 
 public class RegisterActivity extends AppCompatActivity implements RegisterView {
 
-    @BindView(R.id.register_button)
+    @BindView(R.id.signIn_button)
     Button registerButton;
     @BindView(R.id.username_editText)
     EditText username;
@@ -32,6 +33,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     EditText confirmPassword;
 
 
+    @Inject
+    RegisterPresenterImpl presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +44,9 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
 
         ((CasimirApplication)getApplication()).getInjector().inject(this);
 
-        //registerButton.setOnClickListener(v -> presenter.register(username.getText().toString()
-          //      , setPassword.getText().toString()
-            //    , confirmPassword.getText().toString()));
+        registerButton.setOnClickListener(v -> presenter.register(username.getText().toString(),
+           setPassword.getText().toString(),
+           confirmPassword.getText().toString()));
     }
 
 
