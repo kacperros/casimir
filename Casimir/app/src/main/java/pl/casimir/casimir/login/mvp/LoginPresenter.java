@@ -21,4 +21,7 @@ public class LoginPresenter {
             view.badLogin();
     }
 
+    public void updateData() {
+        model.update();
+    }
 }

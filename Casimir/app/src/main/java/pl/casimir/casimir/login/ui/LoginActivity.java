@@ -43,6 +43,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         registerButton.setOnClickListener(v -> startRegisterActivity());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.updateData();
+    }
+
     private void startRegisterActivity() {
         Intent intent = new Intent (this, RegisterActivity.class);
         startActivity(intent);

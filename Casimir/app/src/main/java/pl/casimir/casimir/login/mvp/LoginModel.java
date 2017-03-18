@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.casimir.casimir.dagger.ActivityScope;
+import pl.casimir.casimir.login.ui.LoginActivity;
 import pl.casimir.casimir.persistance.shared_prefs.SharedPreferencesFacade;
 
 /**
@@ -16,8 +17,8 @@ public class LoginModel {
 
 
     private SharedPreferencesFacade sharedPreferencesFacade;
-    private String login;
-    private String password;
+    public String login;
+    public String password;
 
     private static final String LOGIN = "LOGIN";
     private static final String PASSWORD = "PASSWORD";
@@ -25,11 +26,15 @@ public class LoginModel {
     @Inject
     public LoginModel(SharedPreferencesFacade facade) {
         this.sharedPreferencesFacade = facade;
-        this.login = sharedPreferencesFacade.getString(LOGIN);
-        this.password = sharedPreferencesFacade.getString(PASSWORD);
+        update();
     }
 
     boolean login(String login, String password) {
         return login.equals(this.login) && password.equals(this.password);
+    }
+
+    public void update() {
+        this.login = sharedPreferencesFacade.getString(LOGIN);
+        this.password = sharedPreferencesFacade.getString(PASSWORD);
     }
 }

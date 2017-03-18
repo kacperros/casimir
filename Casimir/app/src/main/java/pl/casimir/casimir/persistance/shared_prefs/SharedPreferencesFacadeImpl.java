@@ -9,6 +9,7 @@ public class SharedPreferencesFacadeImpl implements SharedPreferencesFacade {
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+
     private static final String EMPTY = "not_found";
 
     public SharedPreferencesFacadeImpl(SharedPreferences preferences) {

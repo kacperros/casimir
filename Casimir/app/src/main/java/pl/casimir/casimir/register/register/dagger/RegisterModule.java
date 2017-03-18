@@ -21,7 +21,6 @@ public class RegisterModule {
         this.view = view;
     }
 
-
     @ActivityScope
     @Provides
     public RegisterPresenterImpl registerPresenterProvider(RegisterModelImpl model){

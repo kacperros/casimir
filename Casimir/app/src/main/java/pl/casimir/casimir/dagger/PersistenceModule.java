@@ -15,6 +15,7 @@ public class PersistenceModule {
 
     private static final String PREFERENCES_NAME = "CASIMIR_PREFS";
 
+
     @Provides
     @Singleton
     public SharedPreferencesFacade provideSharedPreferencesFacade(Application application) {

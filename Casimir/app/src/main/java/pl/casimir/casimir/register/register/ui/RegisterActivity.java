@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.casimir.casimir.CasimirApplication;
 import pl.casimir.casimir.R;
+import pl.casimir.casimir.login.ui.LoginActivity;
 import pl.casimir.casimir.register.register.mvp.RegisterPresenter;
 import pl.casimir.casimir.register.register.mvp.RegisterPresenterImpl;
 import pl.casimir.casimir.register.register.mvp.RegisterView;
@@ -31,7 +32,6 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     EditText setPassword;
     @BindView(R.id.confirmPassword_editText)
     EditText confirmPassword;
-
 
     @Inject
     RegisterPresenterImpl presenter;
@@ -48,7 +48,6 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
            setPassword.getText().toString(),
            confirmPassword.getText().toString()));
     }
-
 
     @Override
     public void signUp() {
