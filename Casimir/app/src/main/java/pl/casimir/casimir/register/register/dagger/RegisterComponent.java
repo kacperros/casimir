@@ -1,7 +1,5 @@
 package pl.casimir.casimir.register.register.dagger;
 
-import javax.inject.Singleton;
-
 import dagger.Component;
 import pl.casimir.casimir.dagger.ActivityScope;
 import pl.casimir.casimir.dagger.CasimirComponent;

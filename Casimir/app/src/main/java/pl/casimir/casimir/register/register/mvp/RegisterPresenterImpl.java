@@ -4,12 +4,12 @@ package pl.casimir.casimir.register.register.mvp;
  * Created by hp on 2017-03-11.
  */
 
-public class RegisterPresenterImpl implements RegisterPresenter {
+public class RegisterPresenterImpl implements RegisterMVP.Presenter {
 
-    private RegisterView view;
-    private RegisterModel model;
+    private RegisterMVP.View view;
+    private RegisterMVP.Model model;
 
-    public RegisterPresenterImpl(RegisterView view, RegisterModel model)
+    public RegisterPresenterImpl(RegisterMVP.View view, RegisterMVP.Model model)
     {
         this.view = view;
         this.model = model;

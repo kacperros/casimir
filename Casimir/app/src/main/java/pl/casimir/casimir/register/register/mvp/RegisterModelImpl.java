@@ -10,7 +10,7 @@ import pl.casimir.casimir.persistance.shared_prefs.SharedPreferencesFacade;
  * Created by hp on 2017-03-11.
  */
 @ActivityScope
-public class RegisterModelImpl implements RegisterModel {
+public class RegisterModelImpl implements RegisterMVP.Model {
 
     private SharedPreferencesFacade facade;
 

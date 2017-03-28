@@ -3,11 +3,9 @@ package pl.casimir.casimir.register.register.dagger;
 import dagger.Module;
 import dagger.Provides;
 import pl.casimir.casimir.dagger.ActivityScope;
-import pl.casimir.casimir.register.register.mvp.RegisterModel;
+import pl.casimir.casimir.register.register.mvp.RegisterMVP;
 import pl.casimir.casimir.register.register.mvp.RegisterModelImpl;
-import pl.casimir.casimir.register.register.mvp.RegisterPresenter;
 import pl.casimir.casimir.register.register.mvp.RegisterPresenterImpl;
-import pl.casimir.casimir.register.register.mvp.RegisterView;
 
 /**
  * Created by hp on 2017-03-11.
@@ -15,15 +13,15 @@ import pl.casimir.casimir.register.register.mvp.RegisterView;
 @Module
 public class RegisterModule {
 
-    private RegisterView view;
+    private RegisterMVP.View view;
 
-    public RegisterModule(RegisterView view){
+    public RegisterModule(RegisterMVP.View view) {
         this.view = view;
     }
 
     @ActivityScope
     @Provides
-    public RegisterPresenterImpl registerPresenterProvider(RegisterModelImpl model){
+    public RegisterPresenterImpl registerPresenterProvider(RegisterModelImpl model) {
         return new RegisterPresenterImpl(view, model);
     }
 

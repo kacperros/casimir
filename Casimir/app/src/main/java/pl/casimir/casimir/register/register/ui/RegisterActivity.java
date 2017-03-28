@@ -1,12 +1,7 @@
 package pl.casimir.casimir.register.register.ui;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,12 +12,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.casimir.casimir.CasimirApplication;
 import pl.casimir.casimir.R;
-import pl.casimir.casimir.login.ui.LoginActivity;
-import pl.casimir.casimir.register.register.mvp.RegisterPresenter;
+import pl.casimir.casimir.register.register.mvp.RegisterMVP;
 import pl.casimir.casimir.register.register.mvp.RegisterPresenterImpl;
-import pl.casimir.casimir.register.register.mvp.RegisterView;
 
-public class RegisterActivity extends AppCompatActivity implements RegisterView {
+public class RegisterActivity extends AppCompatActivity implements RegisterMVP.View {
 
     @BindView(R.id.signIn_button)
     Button registerButton;
@@ -42,11 +35,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
 
-        ((CasimirApplication)getApplication()).getInjector().inject(this);
+        ((CasimirApplication) getApplication()).getInjector().inject(this);
 
         registerButton.setOnClickListener(v -> presenter.register(username.getText().toString(),
-           setPassword.getText().toString(),
-           confirmPassword.getText().toString()));
+                setPassword.getText().toString(),
+                confirmPassword.getText().toString()));
     }
 
     @Override
