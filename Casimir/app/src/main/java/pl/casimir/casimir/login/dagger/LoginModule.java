@@ -2,6 +2,7 @@ package pl.casimir.casimir.login.dagger;
 
 import dagger.Module;
 import dagger.Provides;
+import pl.casimir.casimir.SchedulerHolders;
 import pl.casimir.casimir.dagger.ActivityScope;
 import pl.casimir.casimir.login.mvp.LoginMVP;
 import pl.casimir.casimir.login.mvp.LoginModel;
@@ -18,7 +19,7 @@ public class LoginModule {
 
     @Provides
     @ActivityScope
-    public LoginPresenter provideLoginPresenter(LoginModel loginModel) {
-        return new LoginPresenter(view, loginModel);
+    public LoginPresenter provideLoginPresenter(LoginModel loginModel, SchedulerHolders holders) {
+        return new LoginPresenter(view, loginModel, holders);
     }
 }

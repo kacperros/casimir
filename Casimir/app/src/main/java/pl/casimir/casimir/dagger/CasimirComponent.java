@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import pl.casimir.casimir.CasimirApplication;
+import pl.casimir.casimir.SchedulerHolders;
 import pl.casimir.casimir.persistance.shared_prefs.SharedPreferencesFacade;
 
 @Singleton
@@ -14,4 +15,5 @@ public interface CasimirComponent {
 
     SharedPreferencesFacade provideSharePrefsFacade();
 
+    SchedulerHolders provideSchedulerHolders();
 }

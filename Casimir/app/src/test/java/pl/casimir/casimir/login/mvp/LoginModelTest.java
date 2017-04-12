@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import io.reactivex.observers.DisposableObserver;
 import pl.casimir.casimir.persistance.shared_prefs.SharedPreferencesFacade;
 import pl.casimir.casimir.persistance.shared_prefs.SharedPreferencesFacadeImpl;
 
@@ -29,12 +30,42 @@ public class LoginModelTest {
 
     @Test
     public void login_successful() throws Exception {
-        Assert.assertTrue(loginModel.login("Andrzej", "Pietruszka"));
+        loginModel.login("Andrzej", "Pietruszka").subscribeWith(new DisposableObserver<Boolean>() {
+            @Override
+            public void onNext(Boolean loginResult) {
+                Assert.assertTrue(loginResult);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Assert.fail();
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
     @Test
     public void login_failed() throws Exception {
-        Assert.assertFalse(loginModel.login("Jerzy", "Pietruszka"));
+        loginModel.login("Jerzy", "Pietruszka").subscribeWith(new DisposableObserver<Boolean>() {
+            @Override
+            public void onNext(Boolean loginResult) {
+                Assert.assertTrue(!loginResult);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Assert.fail();
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
 }
