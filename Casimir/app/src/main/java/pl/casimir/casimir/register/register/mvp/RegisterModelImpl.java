@@ -2,8 +2,8 @@ package pl.casimir.casimir.register.register.mvp;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import pl.casimir.casimir.dagger.ActivityScope;
-import pl.casimir.casimir.login.mvp.LoginModel;
 import pl.casimir.casimir.persistance.shared_prefs.SharedPreferencesFacade;
 
 /**
@@ -26,8 +26,8 @@ public class RegisterModelImpl implements RegisterMVP.Model {
     }
 
     @Override
-    public boolean isCorrect(String login, String password1, String password2) {
-        return password1.equals(password2);
+    public Observable<Boolean> isCorrect(String login, String password1, String password2) {
+        return Observable.just(password1.equals(password2));
     }
 
     @Override

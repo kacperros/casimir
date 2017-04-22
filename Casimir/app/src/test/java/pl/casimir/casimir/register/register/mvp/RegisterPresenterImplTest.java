@@ -6,6 +6,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import io.reactivex.Observable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+import pl.casimir.casimir.SchedulerHolders;
+
 /**
  * Created by hp on 2017-03-30.
  */
@@ -13,6 +18,7 @@ public class RegisterPresenterImplTest {
 
     @Mock
     RegisterMVP.View view;
+
     @Mock
     RegisterModelImpl model;
 
@@ -22,25 +28,24 @@ public class RegisterPresenterImplTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        presenter = new RegisterPresenterImpl(view, model);
+        presenter = new RegisterPresenterImpl(view, model,
+                new SchedulerHolders(Schedulers.trampoline(), Schedulers.trampoline()));
     }
-
     @Test
-    public void register_succesful() throws Exception {
-        Mockito.when(model.isCorrect("Czesiek", "Kazik", "Kazik")).thenReturn(true);
+    public void registerSuccesful() throws Exception {
 
-        presenter.register("Czesiek", "Kazik", "Kazik");
+        presenter.register("nic", "raz", "raz");
 
         Mockito.verify(view).signUp();
+
     }
 
     @Test
-    public void register_failed() throws Exception{
-        Mockito.when(model.isCorrect("Czesiek", "Kazik", "Kazik")).thenReturn(true);
+    public void registerFailed() throws Exception {
 
-        presenter.register("Czesiek", "Kazik", "Jasiek");
+        presenter.register("nic", "ra", "raz");
 
         Mockito.verify(view).error();
-    }
 
+    }
 }

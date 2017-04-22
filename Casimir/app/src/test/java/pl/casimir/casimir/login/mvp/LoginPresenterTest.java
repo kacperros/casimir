@@ -23,7 +23,8 @@ public class LoginPresenterTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        presenter = new LoginPresenter(loginView, loginModel, new SchedulerHolders(Schedulers.trampoline(), Schedulers.trampoline()));
+        presenter = new LoginPresenter(loginView, loginModel,
+                new SchedulerHolders(Schedulers.trampoline(), Schedulers.trampoline()));
     }
 
     @Test

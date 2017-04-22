@@ -51,4 +51,9 @@ public class RegisterActivity extends AppCompatActivity implements RegisterMVP.V
     public void error() {
         Toast.makeText(this, "Nieprawidłowy login lub hasło", Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void handleError(Throwable throwable) {
+        Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
+    }
 }

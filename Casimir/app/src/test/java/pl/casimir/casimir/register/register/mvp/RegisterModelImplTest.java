@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import io.reactivex.observers.DisposableObserver;
 import pl.casimir.casimir.persistance.shared_prefs.SharedPreferencesFacade;
 
 import static org.junit.Assert.*;
@@ -30,11 +31,43 @@ public class RegisterModelImplTest {
     }
     @Test
     public void isCorrect() throws Exception {
-        Assert.assertTrue(registerModel.isCorrect("nic", "Jasio", "Jasio"));
+        registerModel.isCorrect("nic", "Jasio", "Jasio")
+            .subscribeWith(new DisposableObserver<Boolean>() {
+                @Override
+                public void onNext(Boolean result) {
+                    Assert.assertTrue(result);
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
     }
 
     @Test
     public void isNotCorrect() throws Exception {
-        Assert.assertFalse(registerModel.isCorrect("nic", "Kazi1o", "Kazio"));
+        registerModel.isCorrect("nic", "Jasio", "Kazio")
+            .subscribeWith(new DisposableObserver<Boolean>() {
+                @Override
+                public void onNext(Boolean result) {
+                    Assert.assertFalse(result);
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
     }
 }

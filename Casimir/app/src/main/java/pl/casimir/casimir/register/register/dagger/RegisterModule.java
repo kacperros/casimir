@@ -2,6 +2,7 @@ package pl.casimir.casimir.register.register.dagger;
 
 import dagger.Module;
 import dagger.Provides;
+import pl.casimir.casimir.SchedulerHolders;
 import pl.casimir.casimir.dagger.ActivityScope;
 import pl.casimir.casimir.register.register.mvp.RegisterMVP;
 import pl.casimir.casimir.register.register.mvp.RegisterModelImpl;
@@ -21,8 +22,8 @@ public class RegisterModule {
 
     @ActivityScope
     @Provides
-    public RegisterPresenterImpl registerPresenterProvider(RegisterModelImpl model) {
-        return new RegisterPresenterImpl(view, model);
+    public RegisterPresenterImpl registerPresenterProvider(RegisterModelImpl model, SchedulerHolders schedulerHolders) {
+        return new RegisterPresenterImpl(view, model, schedulerHolders);
     }
 
 }
