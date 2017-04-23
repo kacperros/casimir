@@ -27,6 +27,8 @@ public class RegisterPresenterImpl implements RegisterMVP.Presenter {
     @Override
     public void register(String username, String password1, String password2) {
         compositeDisposable.add(model.isCorrect(username, password1, password2)
+                .observeOn(schedulerHolders.observ())
+                .subscribeOn(schedulerHolders.subscribe())
             .subscribeWith(new DisposableObserver<Boolean>(){
                 @Override
                 public void onNext(Boolean result) {
